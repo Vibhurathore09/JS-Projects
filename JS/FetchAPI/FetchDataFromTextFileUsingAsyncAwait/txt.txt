@@ -1,0 +1,5 @@
+FETCH API 
+
+it provides an interfaces for fetching resources(including across the network).
+
+fetch() => method of the WinodwOrWorkerGlobalScope mixing starts the porcess of fetching a resource from the network , returning a promise which is fulfilled once the response is available . The promise resolves to the Response object representing the response to your request.

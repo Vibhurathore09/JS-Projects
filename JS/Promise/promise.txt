@@ -1,0 +1,11 @@
+A promise is an object representing the eventaul completion or failure of an asynchronous operation
+A JavaScript Promise object contains both the producing code and calls to the consuming code.
+It can be used to deal with Asynchronous operation in JavaScript.
+
+A pendinbg promise ccan either be Resolved with a value or Rejected with a reason(error)/
+When either of these option happends , the associated handlers queued up by a promise;s then method are called.
+A promise is said to be setteled if tis its etiher resolved or rejected 
+
+then() = this method returns a promise . It takes up to two arguments : callback functoins for the success and failure cases of the Promise. As then method returns a Promise so we can do method chaining.
+
+Chaininig -> The then method returns a promise which allows for method chaining. if the dunction passes as handler to then returns a promise, an equivalnent promise will be exposed to the subsequent then in the mehtod chain.

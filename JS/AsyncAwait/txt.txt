@@ -1,0 +1,8 @@
+async -> This keyword is used to turn a function declaration to async function
+
+
+async functoin -> An async function is a function declared with the asycn keyword.
+An async function is a functoin that knows how to expect the possiblity o f the await keyword being used to invoke asynchronous code. It return a pormise.
+
+await -> The await operator is used to wait for a promise . It can only be used inside an async function within regfular JavaScipt code.
+await can be put in fron of any async promise-based function to pause your code on that line until the promise fulfills, then return the resulting value/
