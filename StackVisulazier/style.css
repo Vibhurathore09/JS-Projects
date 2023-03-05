@@ -64,7 +64,7 @@ header {
 
 .push,
 .pop,
-.reset,
+.Reset,
 .box {
     height: 50px;
     width: 140px;
@@ -116,10 +116,11 @@ header {
     gap: 5px;
     padding-bottom: 5px;
 }
+
 .ele {
-    height : 80px;
-    width : 170px;
+    height: 80px;
+    width: 170px;
     background-color: green;
-    color : white;
-    border
+    color: white;
+    border : none;
 }
