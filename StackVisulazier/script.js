@@ -5,6 +5,7 @@ const input = document.querySelector(".text");
 const bucket = document.querySelector(".main-stack-bucket");
 const message = document.querySelector(".message");
 const messageBox = document.querySelector(".message-box");
+const box = document.querySelectorAll(".box");
 const stack = [];
 // for disable all buttons
 const buttonDisable = () => {
@@ -26,7 +27,7 @@ const buttonEnable = () => {
     pop.classList.remove("disable-button");
     reset.disabled = false;
     reset.classList.remove("disable-button");
-    push.disabled = false;
+    input.disabled = false;
 };
 
 // when the push button is clicked
@@ -34,19 +35,19 @@ push.addEventListener("click", () => {
     if (input.value == "") {
         message.innerHTML = "Please Enter a value";
         messageBox.classList.add("error-message");
-        setTimeout(()=>{
+        setTimeout(() => {
             messageBox.classList.remove("error-message");
-        },1200);
+        }, 1200);
         return;
     }
 
-    if(stack.length == 5){
+    if (stack.length == 5) {
         input.value = "";
         message.innerHTML = "Stack Overflow";
         messageBox.classList.add("error-message");
-        setTimeout(()=>{
+        setTimeout(() => {
             messageBox.classList.remove("error-message");
-        },1200);
+        }, 1200);
         return;
     }
     const itemValue = input.value; //for store the input value
@@ -55,12 +56,13 @@ push.addEventListener("click", () => {
     // creating a new element 
     const element = document.createElement("div");
     element.classList.add("ele");
-    element.innerText = stack[stack.length-1];
+    element.innerText = stack[stack.length - 1];
     bucket.appendChild(element);
 
     // upadte the top
-    box[0].innerHTML = stack[stack.length-1];
-
+    console.log(box);
+    box[0].innerHTML = stack[stack.length - 1];
+    console.log(box);
     // clear the input box
     input.value = "";
 
@@ -71,15 +73,76 @@ push.addEventListener("click", () => {
     buttonDisable();
 
     // after pushing the element
-    setTimeout(()=>{
+    setTimeout(() => {
         // remove the animation
         element.classList.remove("ele-add");
         // update the Last Pushed Item Value
-        box[1].innerHTML = itemValuel
-
+        box[1].innerHTML = itemValue;
+        box[3].innerHTML = Number(box[3].innerText)+1;
         // Dispalye the message 
-        message.innerHTML = `Item ${stack[stack.length-1]} is Pushed.`;
+        message.innerHTML = `Item ${stack[stack.length - 1]} is Pushed.`;
         // Enable all buttons
         buttonEnable();
     }, 1500);
+})
+
+// when th pop button is clicked
+
+pop.addEventListener("click", () => {
+    if (stack.length == 0) {
+        message.classList.add("error-message");
+        message.innerHTML = "Stack Underflow";
+        setTimeout(() => {
+            messageBox.classList.remove("error-message");
+        }, 1200);
+        return;
+    }
+    // adding the poping animation
+    bucket.lastElementChild.classList.add("ele-remove");
+
+    //disable all buttons
+    buttonDisable();
+
+    // start popping the element
+    setTimeout(() => {
+        // Delete the element from the bucket
+        bucket.removeChild(bucket.lastElementChild);
+        // Storing the popped value
+        const itemValue = stack.pop();
+
+        //updating the last popped item
+        box[2].innerHTML = itemValue;
+        box[3].innerHTML = Number(box[3].innerText ) - 1;
+        //Updating the Top
+        if(stack.length == 0){
+            box[0].innerHTML = "";
+        }
+        else{
+            box[0].innerHTML = stack[stack.length-1];
+        }
+
+        // adding the message
+        message.innerHTML = `Item ${itemValue} is Popped.`;
+
+        // Enable all buttons
+        buttonEnable();
+    },1500);
+});
+
+// When the reset button is clicked
+reset.addEventListener("click" ,()=>{
+    // clear the full array
+    while(stack.length > 0){
+        stack.pop();
+    }
+    //clear all fiels;
+    box[0].innerHTML = "0";
+    box[1].innerHTML = "0";
+    box[2].innerHTML = "0";
+    box[3].innerHTML = "0";
+    // clear all element from the bucket
+    while(bucket.firstChild){
+        bucket.removeChild(bucket.firstChild);
+    }
+
 })
